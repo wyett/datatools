@@ -401,7 +401,7 @@ main(){
 
   for tbname in $(awk '{print $2}' $TMPFILE|sort | uniq)
   do
-    if [ $(getDBRole) == 'DbRole=MS' ];then
+    if [ $(getDBRole) == 'master' ];then
       addPartition "$tbname"
     fi
   done
@@ -415,7 +415,7 @@ main(){
     pl=$(getOldList $tbname)
     for pname in $(echo $pl)
     do
-      if [ $(getDBRole) == 'DbRole=MS' ];then
+      if [ $(getDBRole) == 'master' ];then
         dropOldestPartition $tbname $pname
         #wlog 'info' "$tbname $pname"
       fi
@@ -426,23 +426,4 @@ main(){
 main "$@"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#eof
